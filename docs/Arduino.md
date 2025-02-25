@@ -1,6 +1,6 @@
-# Arduino
+# 3、Arduino
 
-# 3、Arduino IDE和驱动的安装
+# Arduino IDE和驱动的安装
 
 当我们拿到开发板时，首先我们要安装Arduino IDE和驱动，相关文件我们可以在官网上找到，以下链接是包含各种系统、各种版本的Arduino IDE和驱动任你选择。
 
@@ -63,7 +63,7 @@
 
 ![](media/af9806622ecf816c62f7597448a3cc5f.png)
 
-# 4、Arduino IDE的使用方法
+# Arduino IDE的使用方法
 
 Keyes UNO R3
 开发板的USB驱动安装成功之后，我们可以在Windows设备管理器中找到相应的串口。
@@ -134,7 +134,7 @@ Serial.println("Hello World!");
 
 那么恭喜你，你的第一个程序已经成功了！！！
 
-# 5、实验课程
+# 实验课程
 
 ## 实验一 LED 闪烁实验
 
