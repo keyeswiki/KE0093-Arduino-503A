@@ -30,14 +30,11 @@
 
 ![](media/4baf5095962e49c1f3ebeb6c2da823f0.png)
 
-接下来是开发板驱动的安装，这次我们安装的是Keyes UNO R3
-开发板的驱动，Keyes 2560 R3
-开发板安装驱动方法和这个类似，驱动文件可以用同一个文件。
+接下来是开发板驱动的安装，这次我们安装的是Keyes UNO R3开发板的驱动，Keyes 2560 R3开发板安装驱动方法和这个类似，驱动文件可以用同一个文件。
 
 不同的系统，安装驱动的方法也有一些细小的区别，下面我们介绍在WIN 7系统安装驱动的方法。
 
-第一次Keyes UNO R3
-开发板连接电脑时，点击计算机--属性--设备管理器，显示如下图。
+第一次Keyes UNO R3开发板连接电脑时，点击计算机--属性--设备管理器，显示如下图。
 
 ![](media/ef888e8d5fad0b30e4da671933f8842c.png)
 
@@ -72,6 +69,7 @@ Keyes UNO R3
 
 测试代码为：
 
+```
 int val;
 
 int ledpin=13;
@@ -80,9 +78,9 @@ void setup()
 
 {
 
-Serial.begin(9600);
+    Serial.begin(9600);
 
-pinMode(ledpin,OUTPUT);
+    pinMode(ledpin,OUTPUT);
 
 }
 
@@ -90,30 +88,28 @@ void loop()
 
 {
 
-val=Serial.read();
+    val=Serial.read();
 
-if(val=='R')
+    if(val=='R')
 
-{
+    {
 
-digitalWrite(ledpin,HIGH);
+        digitalWrite(ledpin,HIGH);
 
-delay(500);
+        delay(500);
 
-digitalWrite(ledpin,LOW);
+        digitalWrite(ledpin,LOW);
 
-delay(500);
+        delay(500);
 
-Serial.println("Hello World!");
+        Serial.println("Hello World!");
+
+    }
 
 }
+```
 
-}
-
-我们打开Arduino 的软件，编写一段程序让Keyes UNO R3
-开发板接受到我们发的指令就显示“Hello World！”字符串；我们再借用一下Keyes UNO R3 开发板上的 D13
-的指示灯，让Keyes UNO R3
-开发板接受到指令时指示灯闪烁一下，再显示“Hello World！”。
+我们打开Arduino 的软件，编写一段程序让Keyes UNO R3开发板接受到我们发的指令就示“Hello World！”字符串；我们再借用一下Keyes UNO R3 开发板上的 D13的指示灯，让Keyes UNO R3开发板接受到指令时指示灯闪烁一下，再显示“Hello World！”。
 
 打开Arduino 的软件，设置板，如下。
 
@@ -140,8 +136,7 @@ Serial.println("Hello World!");
 
 实验说明
 
-LED 闪烁实验是比较基础的实验之一，上一个“ Hello World！”实验里已经利用到了Arduino 自带的LED，这次我们利用其他I/O
-口和外接直插LED 灯来完成这个实验。
+LED 闪烁实验是比较基础的实验之一，上一个“ Hello World！”实验里已经利用到了Arduino 自带的LED，这次我们利用其他I/O口和外接直插LED 灯来完成这个实验。
 
 实验器材
 
@@ -163,6 +158,7 @@ LED*1
 
 测试代码
 
+```
 int led = 2; //定义数字口2
 
 void setup()
@@ -186,6 +182,7 @@ void loop()
   delay(1000);//延迟1秒
 
 }
+```
 
 测试结果
 
@@ -217,13 +214,14 @@ LED*1
 
 测试代码
 
+```
 int ledPin = 3; // 定义数字口3
 
 void setup()
 
 {
 
-pinMode(ledPin, OUTPUT);// 将ledPin设置为输出
+	pinMode(ledPin, OUTPUT);// 将ledPin设置为输出
 
 }
 
@@ -231,31 +229,30 @@ void loop()
 
 {
 
-for (int a=0; a\<=255;a++)// 设置使LED逐渐变亮
+    for (int a=0; a<=255;a++)// 设置使LED逐渐变亮
 
-{
+    {
 
-analogWrite(ledPin,a); //
-开启led,调节亮度，范围是0-255，在255时led最亮
+        analogWrite(ledPin,a); //开启led,调节亮度，范围是0-255，在255时led最亮
 
-delay(10); // 延迟0.01S
+        delay(10); // 延迟0.01S
 
-}
+    }
 
-for (int a=255; a\>=0;a--) // 设置使LED逐渐变暗
+    for (int a=255; a>=0;a--) // 设置使LED逐渐变暗
 
-{
+    {
 
-analogWrite(ledPin,a); //
-开启led,调节亮度，范围是0-255，在255时led最亮
+        analogWrite(ledPin,a); //开启led,调节亮度，范围是0-255，在255时led最亮
 
-delay(10); // 延迟0.01秒
+        delay(10); // 延迟0.01秒
 
-}
+    }
 
-delay(1000);// 延迟1秒
+    delay(1000);// 延迟1秒
 
 }
+```
 
 测试结果
 
@@ -287,6 +284,7 @@ LED\*5
 
 测试代码
 
+```
 int BASE = 2 ; //第一个 LED 接的 I/O 口
 
 int NUM = 5; //LED 的总数
@@ -295,13 +293,13 @@ void setup()
 
 {
 
-for (int i = BASE; i \< BASE + NUM; i ++)
+    for (int i = BASE; i < BASE + NUM; i ++)
 
-{
+    {
 
-pinMode(i, OUTPUT); //设定数字I/O口为输出
+    	pinMode(i, OUTPUT); //设定数字I/O口为输出
 
-}
+    }
 
 }
 
@@ -309,27 +307,28 @@ void loop()
 
 {
 
-for (int i = BASE; i \< BASE + NUM; i ++)
+    for (int i = BASE; i < BASE + NUM; i ++)
 
-{
+    {
 
-digitalWrite(i, HIGH); //设定数字I/O口输出为"高"，即逐渐开灯
+        digitalWrite(i, HIGH); //设定数字I/O口输出为"高"，即逐渐开灯
 
-delay(200); //延迟
+        delay(200); //延迟
+
+    }
+
+    for (int i = BASE; i < BASE + NUM; i ++)
+
+    {
+
+        digitalWrite(i, LOW); //设定数字I/O口输出为"低"，即逐渐关灯
+
+        delay(200); //延迟
+
+    }
 
 }
-
-for (int i = BASE; i \< BASE + NUM; i ++)
-
-{
-
-digitalWrite(i, LOW); //设定数字I/O口输出为"低"，即逐渐关灯
-
-delay(200); //延迟
-
-}
-
-}
+```
 
 测试结果
 
@@ -339,11 +338,7 @@ delay(200); //延迟
 
 实验说明
 
-I/O 口的意思即为INPUT 接口和OUTPUT
-接口，到目前为止我们设计的小灯实验都还只是应用到Arduino 的I/O
-口的输出功能，这个实验我们来尝试一下使用Arduino的I/O
-口的输入功能即为读取外接设备的输出值，我们用一个按键和一个LED
-小灯完成一个输入输出结合使用的实验，让大家能简单了解I/O 的作用。
+I/O 口的意思即为INPUT 接口和OUTPUT接口，到目前为止我们设计的小灯实验都还只是应用到Arduino 的I/O口的输出功能，这个实验我们来尝试一下使用Arduino的I/O口的输入功能即为读取外接设备的输出值，我们用一个按键和一个LED小灯完成一个输入输出结合使用的实验，让大家能简单了解I/O 的作用。
 
 实验器材
 
@@ -369,6 +364,7 @@ LED*1
 
 测试代码
 
+```
 int ledPin = 11; //定义数字口11
 
 int inputPin = 3; //定义数字口3
@@ -377,9 +373,9 @@ void setup()
 
 {
 
-pinMode(ledPin, OUTPUT); //将ledPin设置为输出
+	pinMode(ledPin, OUTPUT); //将ledPin设置为输出
 
-pinMode(inputPin, INPUT); //将inputPin设置为输入
+	pinMode(inputPin, INPUT); //将inputPin设置为输入
 
 }
 
@@ -387,27 +383,26 @@ void loop()
 
 {
 
-int val = digitalRead(inputPin);
+	int val = digitalRead(inputPin);//设置数字变量val，读取到数字口3的数值，并赋值给 val
 
-//设置数字变量val，读取到数字口3的数值，并赋值给 val
+    if (val == LOW) //当val为低电平时，LED变暗
 
-if (val == LOW) //当val为低电平时，LED变暗
+    {
 
-{
+    	digitalWrite(ledPin, LOW); // LED变暗
 
-digitalWrite(ledPin, LOW); // LED变暗
+    }
 
-}
+    else
 
-else
+    {
 
-{
+    	digitalWrite(ledPin, HIGH); // LED亮起
 
-digitalWrite(ledPin, HIGH); // LED亮起
-
-}
+    }
 
 }
+```
 
 测试结果
 
@@ -417,10 +412,7 @@ digitalWrite(ledPin, HIGH); // LED亮起
 
 实验说明
 
-完成上面的实验以后相信已经有很多朋友可以独立完成这个实验了，我们可以将上面的按键控制小灯的实验扩展成4个按键对应3
-个小灯，占用7个数字I/O
-接口。为方便接线，我们把3个小灯用一个RGB灯代替。RGB灯可通过 R、 G、
-B三个引脚的PWM电压输入可以调节三种基色（红/蓝/绿）的强度从而实现全彩的混色效果。
+完成上面的实验以后相信已经有很多朋友可以独立完成这个实验了，我们可以将上面的按键控制小灯的实验扩展成4个按键对应3个小灯，占用7个数字I/O接口。为方便接线，我们把3个小灯用一个RGB灯代替。RGB灯可通过 R、 G、B三个引脚的PWM电压输入可以调节三种基色（红/蓝/绿）的强度从而实现全彩的混色效果。
 
 本实验中我们利用4个按键控制3个PWM口，控制RGB模块发光颜色从而达到抢答器的效果。RGB灯接口说明如下图。
 
@@ -452,129 +444,81 @@ RGB灯*1
 
 测试代码
 
-int redled=9;
+```
+int redled=9;                       // 红色LED控制引脚
+int greenled=10;                    // 绿色LED控制引脚  
+int blueled=11;                     // 蓝色LED控制引脚
 
-int greenled=10;
+int redpin=5;                       // 红色按钮输入引脚
+int greenpin=4;                     // 绿色按钮输入引脚
+int bluepin=3;                      // 蓝色按钮输入引脚
+int restpin=2;                      // 复位按钮输入引脚
 
-int blueled=11;
-
-int redpin=5;
-
-int greenpin=4;
-
-int bluepin=3;
-
-int restpin=2;
-
-int red;
-
-int green;
-
-int blue;
+int red;                            // 存储红色按钮状态
+int green;                          // 存储绿色按钮状态
+int blue;                           // 存储蓝色按钮状态
 
 void setup()
-
 {
-
-pinMode(redled,OUTPUT);
-
-pinMode(greenled,OUTPUT);
-
-pinMode( blueled,OUTPUT);
-
-pinMode(redpin,INPUT);
-
-pinMode(greenpin,INPUT);
-
-pinMode(bluepin,INPUT);
-
+  pinMode(redled,OUTPUT);           // 初始化红色LED为输出模式
+  pinMode(greenled,OUTPUT);         // 初始化绿色LED为输出模式
+  pinMode(blueled,OUTPUT);          // 初始化蓝色LED为输出模式
+  
+  pinMode(redpin,INPUT);            // 初始化红色按钮为输入模式
+  pinMode(greenpin,INPUT);          // 初始化绿色按钮为输入模式
+  pinMode(bluepin,INPUT);           // 初始化蓝色按钮为输入模式
 }
 
 void loop()
-
 {
+  red=digitalRead(redpin);          // 读取红色按钮状态
+  green=digitalRead(greenpin);      // 读取绿色按钮状态
+  blue=digitalRead(bluepin);        // 读取蓝色按钮状态
 
-red=digitalRead(redpin);
-
-green=digitalRead(greenpin);
-
-blue=digitalRead(bluepin);
-
-if(red==LOW)RED_YES();
-
-if(green==LOW)GREEN_YES();
-
-if(blue==LOW)BLUE_YES();
-
+  if(red==LOW) RED_YES();           // 如果红色按钮按下，执行红色模式
+  if(green==LOW) GREEN_YES();       // 如果绿色按钮按下，执行绿色模式
+  if(blue==LOW) BLUE_YES();         // 如果蓝色按钮按下，执行蓝色模式
 }
 
 void RED_YES()
-
 {
-
-while(digitalRead(restpin)==1)
-
-{
-
-color(255, 0, 0);
-
-}
-
-clear_led();
-
+  while(digitalRead(restpin)==1)    // 当复位按钮未按下时保持循环
+  {
+    color(255, 0, 0);               // 设置RGB为纯红色(255,0,0)
+  }
+  clear_led();                      // 退出循环后清除LED显示
 }
 
 void GREEN_YES()
-
 {
-
-while(digitalRead(restpin)==1)
-
-{
-
-color(0, 255, 0);
-
-}
-
-clear_led();
-
+  while(digitalRead(restpin)==1)    // 当复位按钮未按下时保持循环
+  {
+    color(0, 255, 0);               // 设置RGB为纯绿色(0,255,0)
+  }
+  clear_led();                      // 退出循环后清除LED显示
 }
 
 void BLUE_YES()
-
 {
-
-while(digitalRead(restpin)==1)
-
-{
-
-color(0, 0, 255);
-
-}
-
-clear_led();
-
+  while(digitalRead(restpin)==1)    // 当复位按钮未按下时保持循环
+  {
+    color(0, 0, 255);               // 设置RGB为纯蓝色(0,0,255)
+  }
+  clear_led();                      // 退出循环后清除LED显示
 }
 
 void clear_led()
-
 {
-
-color(0, 0, 0);
-
+  color(0, 0, 0);                   // 关闭所有LED(0,0,0)
 }
 
-void color (unsigned char red, unsigned char green, unsigned char blue) //颜色控制函数
-
+void color(unsigned char red, unsigned char green, unsigned char blue) 
 {
-
-analogWrite(redled, red);
-
-analogWrite(greenled,green);
-
-analogWrite(blueled, blue);
-
+  analogWrite(redled, red);         // PWM输出红色亮度
+  analogWrite(greenled,green);      // PWM输出绿色亮度
+  analogWrite(blueled, blue);       // PWM输出蓝色亮度
 }
+```
 
 测试结果
 
@@ -608,15 +552,16 @@ LED*1
 
 测试代码
 
+```
 int ledpin=11;//定义数字接口11（PWM 输出）
 
 void setup()
 
 {
 
-pinMode(ledpin,OUTPUT);//定义数字接口11 为输出
+	pinMode(ledpin,OUTPUT);//定义数字接口11 为输出
 
-Serial.begin(9600);//设置波特率为9600
+	Serial.begin(9600);//设置波特率为9600
 
 }
 
@@ -624,17 +569,18 @@ void loop()
 
 {
 
-int val=analogRead(0);//读取模拟口A0口的值
+    int val=analogRead(0);//读取模拟口A0口的值
 
-val = map(val, 0, 1023, 0, 255);//从0-1023映射到0-255
+    val = map(val, 0, 1023, 0, 255);//从0-1023映射到0-255
 
-Serial.println(val);//显示val 变量
+    Serial.println(val);//显示val 变量
 
-analogWrite(ledpin,val);// 打开LED 并设置亮度
+    analogWrite(ledpin,val);// 打开LED 并设置亮度
 
-delay(100);//延时0.1 秒
+    delay(100);//延时0.1 秒
 
 }
+```
 
 测试结果
 
@@ -644,12 +590,9 @@ delay(100);//延时0.1 秒
 
 实验说明
 
-完成以上的各种实验后，我们对Arduino
-的应用也应该有一些认识和了解了，在基本的数字量输入输出和模拟量输入以及PWM
-的产生都掌握以后，我们就可以开始进行一些传感器的应用了。
+完成以上的各种实验后，我们对Arduino的应用也应该有一些认识和了解了，在基本的数字量输入输出和模拟量输入以及PWM的产生都掌握以后，我们就可以开始进行一些传感器的应用了。
 
-本次实验我们先进行一个较为简单的光敏电阻的使用实验。光敏电阻既然是可以根据光强改变阻值的元件，自然也需要模拟口读取模拟值了，本实验可以借鉴电位器调控灯光亮度实验，将电位计换做光敏电阻实现当光强不同时LED
-小灯的亮度也会有相应的变化。
+本次实验我们先进行一个较为简单的光敏电阻的使用实验。光敏电阻既然是可以根据光强改变阻值的元件，自然也需要模拟口读取模拟值了，本实验可以借鉴电位器调控灯光亮度实验，将电位计换做光敏电阻实现当光强不同时LED小灯的亮度也会有相应的变化。
 
 实验器材
 
@@ -675,15 +618,16 @@ LED*1
 
 测试代码
 
+```
 int ledpin=11;//定义数字接口11（PWM 输出）
 
 void setup()
 
 {
 
-pinMode(ledpin,OUTPUT);//定义数字接口11 为输出
+	pinMode(ledpin,OUTPUT);//定义数字接口11 为输出
 
-Serial.begin(9600);//设置波特率为9600
+	Serial.begin(9600);//设置波特率为9600
 
 }
 
@@ -691,17 +635,18 @@ void loop()
 
 {
 
-int val=analogRead(0);//读取模拟口A0口的值
+    int val=analogRead(0);//读取模拟口A0口的值
 
-Serial.println(val);//显示val 变量
+    Serial.println(val);//显示val 变量
 
-val = map(val, 0, 1023, 0, 255);//从0-1023映射到0-255
+    val = map(val, 0, 1023, 0, 255);//从0-1023映射到0-255
 
-analogWrite(ledpin,255-val);// 打开LED 并设置亮度
+    analogWrite(ledpin,255-val);// 打开LED 并设置亮度
 
-delay(10);//延时0.01 秒
+    delay(10);//延时0.01 秒
 
 }
+```
 
 测试结果
 
@@ -731,6 +676,7 @@ USB线*1
 
 测试代码
 
+```
 int buzzer = 2; //定义数字口2
 
 void setup()
@@ -754,6 +700,7 @@ void loop()
   delay(1000);//延迟1S
 
 }
+```
 
 测试结果
 
@@ -791,6 +738,7 @@ USB线*1
 
 测试代码
 
+```
 int flame=7;//定义火焰接口为数字7 接口
 
 int Beep=9;//定义蜂鸣器接口为数字9 接口
@@ -799,9 +747,9 @@ void setup()
 
 {
 
-pinMode(Beep,OUTPUT);//定义Beep为输出接口
+    pinMode(Beep,OUTPUT);//定义Beep为输出接口
 
-pinMode(flame,INPUT);//定义flame为输入接口
+    pinMode(flame,INPUT);//定义flame为输入接口
 
 }
 
@@ -809,25 +757,27 @@ void loop()
 
 {
 
-int val=digitalRead(flame);//读取火焰传感器
+    int val=digitalRead(flame);//读取火焰传感器
 
-if(val==HIGH)//当数字口7为高电平时蜂鸣器鸣响
+    if(val==HIGH)//当数字口7为高电平时蜂鸣器鸣响
 
-{
+    {
 
-digitalWrite(Beep,HIGH);
+        digitalWrite(Beep,HIGH);
 
-}else
+    }
+    
+    else
 
-{
+    {
 
-digitalWrite(Beep,LOW);
+    	digitalWrite(Beep,LOW);
 
+    }
+
+    delay(500);
 }
-
-delay(500);
-
-}
+```
 
 测试结果
 
@@ -863,6 +813,7 @@ LED\*2
 
 测试代码
 
+```
 int redled = 10; //定义数字口10
 
 int greenled = 11; //定义数字口11
@@ -875,13 +826,13 @@ void setup()
 
 {
 
-pinMode(redled,OUTPUT);
+    pinMode(redled,OUTPUT);
 
-pinMode(greenled, OUTPUT);
+    pinMode(greenled, OUTPUT);
 
-pinMode(redpin, INPUT);
+    pinMode(redpin, INPUT);
 
-pinMode(greenpin,INPUT);
+    pinMode(greenpin,INPUT);
 
 }
 
@@ -889,43 +840,44 @@ void loop()
 
 {
 
-int val = digitalRead(redpin);
+    int val = digitalRead(redpin);
 
-if (val == HIGH)
+    if (val == HIGH)
 
-{
+    {
 
-digitalWrite(redled, HIGH);
+    	digitalWrite(redled, HIGH);
+
+    }
+
+    else
+
+    {
+
+    	digitalWrite(redled,LOW);
+
+    }
+
+    int val1 = digitalRead(greenpin);
+
+    if (val1 == HIGH)
+
+    {
+
+    	digitalWrite(greenled, HIGH);
+
+    }
+
+    else
+
+    {
+
+    	digitalWrite(greenled,LOW);
+
+    }
 
 }
-
-else
-
-{
-
-digitalWrite(redled,LOW);
-
-}
-
-int val1 = digitalRead(greenpin);
-
-if (val1 == HIGH)
-
-{
-
-digitalWrite(greenled, HIGH);
-
-}
-
-else
-
-{
-
-digitalWrite(greenled,LOW);
-
-}
-
-}
+```
 
 测试结果
 
@@ -960,11 +912,12 @@ LM35DZ*1
 
 测试代码
 
+```
 void setup()
 
 {
 
-Serial.begin(9600);//设置波特率
+	Serial.begin(9600);//设置波特率
 
 }
 
@@ -972,23 +925,24 @@ void loop()
 
 {
 
-int val; //定义数字变量val
+    int val; //定义数字变量val
 
-int dat;//定义数字变量dat
+    int dat;//定义数字变量dat
 
-val=analogRead(0);//将val设置为读取到的A0的数值
+    val=analogRead(0);//将val设置为读取到的A0的数值
 
-dat=(500 \* val) /1024; //计算出当前温度数字dat
+    dat=(500 \* val) /1024; //计算出当前温度数字dat
 
-Serial.print("Temp:"); //显示 Temp:
+    Serial.print("Temp:"); //显示 Temp:
 
-Serial.print(dat); //显示计算的温度值
+    Serial.print(dat); //显示计算的温度值
 
-Serial.println("C");//显示C，并自动换行
+    Serial.println("C");//显示C，并自动换行
 
-delay(500); //延迟0.5S
+    delay(500); //延迟0.5S
 
 }
+```
 
 测试结果
 
@@ -1031,6 +985,7 @@ LED\*2
 
 测试代码
 
+```
 int LedPinA = 5; //定义数字口5
 
 int LedPinB = 6; //定义数字口6
@@ -1051,15 +1006,15 @@ void setup()
 
 {
 
-Serial.begin(9600);//设置波特率
+    Serial.begin(9600);//设置波特率
 
-pinMode(LedPinA, OUTPUT);//数字口5设置为输出
+    pinMode(LedPinA, OUTPUT);//数字口5设置为输出
 
-pinMode(LedPinB, OUTPUT);//数字口6设置为输出
+    pinMode(LedPinB, OUTPUT);//数字口6设置为输出
 
-pinMode(ButtonPinA, INPUT);//数字口7设置为输入
+    pinMode(ButtonPinA, INPUT);//数字口7设置为输入
 
-pinMode(ButtonPinB, INPUT);//数字口4设置为输入
+    pinMode(ButtonPinB, INPUT);//数字口4设置为输入
 
 }
 
@@ -1067,78 +1022,76 @@ void loop()
 
 {
 
-buttonStateA =
-digitalRead(ButtonPinA);//读取数字口7的数值赋值给buttonStateA
+    buttonStateA =digitalRead(ButtonPinA);//读取数字口7的数值赋值给buttonStateA
 
-if (buttonStateA == HIGH && brightnessA != 255)
+    if (buttonStateA == HIGH && brightnessA != 255)
 
-//当buttonStateA为高电平且brightnessA不为255
+    //当buttonStateA为高电平且brightnessA不为255
 
-{
+    {
 
-brightnessA ++;//brightnessA加1
+        brightnessA ++;//brightnessA加1
 
-delay(10);//延迟0.01S
+        delay(10);//延迟0.01S
 
-}
+    }
 
-if (buttonStateA == LOW && brightnessA != 0)
+    if (buttonStateA == LOW && brightnessA != 0)
 
-//当buttonStateA为低电平且brightnessA不为0
+    //当buttonStateA为低电平且brightnessA不为0
 
-{
+    {
 
-brightnessA --;//brightnessA减1
+        brightnessA --;//brightnessA减1
 
-delay(10);//延迟0.01S
+        delay(10);//延迟0.01S
 
-}
+    }
 
-analogWrite(LedPinB, brightnessA);//将brightnessA赋值为给PWM口6
+    analogWrite(LedPinB, brightnessA);//将brightnessA赋值为给PWM口6
 
-Serial.print(brightnessA);//显示brightnessA数值
+    Serial.print(brightnessA);//显示brightnessA数值
 
-Serial.print(" ");
+    Serial.print(" ");
 
-buttonStateB =
-digitalRead(ButtonPinB);//读取数字口4的数值赋值给buttonStateB
+    buttonStateB =digitalRead(ButtonPinB);//读取数字口4的数值赋值给buttonStateB
 
-if (buttonStateB == HIGH && brightnessB != 0)
+    if (buttonStateB == HIGH && brightnessB != 0)
 
-//当buttonStateB为高电平且brightnessA不为0
+    //当buttonStateB为高电平且brightnessA不为0
 
-{
+    {
 
-brightnessB --;//brightnessB减1
+        brightnessB --;//brightnessB减1
 
-delay(10);//延迟0.01S
+        delay(10);//延迟0.01S
 
-}
+    }
 
-if (buttonStateB == LOW && brightnessB != 255)
+    if (buttonStateB == LOW && brightnessB != 255)
 
-//当buttonStateB为低电平且brightnessA不为255
+    //当buttonStateB为低电平且brightnessA不为255
 
-{
+    {
 
-brightnessB++;//brightnessB加1
+        brightnessB++;//brightnessB加1
 
-delay(10);//延迟0.01S
+        delay(10);//延迟0.01S
 
-}
+    }
 
-analogWrite(LedPinA, brightnessB); //将brightnessB赋值为给PWM口5
+    analogWrite(LedPinA, brightnessB); //将brightnessB赋值为给PWM口5
 
-Serial.println(brightnessB);//显示brightnessB数值，并自动换行
+    Serial.println(brightnessB);//显示brightnessB数值，并自动换行
 
-delay(5);
+    delay(5);
 
 }
+```
 
 测试结果
 
-按照上图接好线，烧录好代码，上电后，将两个倾斜开关同时倾斜一边，
-一个LED逐渐变暗，同时另一个逐渐变亮，最终一个LED完全熄灭，一个LED最亮；在串口监视器中看到对应具体数值变化，如下图。当倾斜另一边中，现象一样，方向相反。
+按照上图接好线，烧录好代码，上电后，将两个倾斜开关同时倾斜一边，一个LED逐渐变暗，同时另一个逐渐变亮，最终一个LED完全熄灭，一个LED最亮；在串口监视器中看到对应具体数值化，如下图。当倾斜另一边中，现象一样，方向相反。
 
 ![](media/a2eeeb120b393ff439724f48e186dff2.png)
 
@@ -1168,27 +1121,20 @@ USB线*1
 
 测试代码
 
+```
 void setup()
-
 {
-
-Serial.begin(9600); //Set serial baud rate to 9600 bps
-
+  Serial.begin(9600);          // 初始化串口通信，波特率9600
 }
 
 void loop()
-
 {
-
-int val;
-
-val=analogRead(0);//Read rotation sensor value from analog 0
-
-Serial.println(val,DEC);//Print the value to serial port
-
-delay(100);
-
+  int val;                    // 定义存储传感器值的变量
+  val = analogRead(0);        // 从模拟引脚0读取旋转传感器值
+  Serial.println(val, DEC);   // 以十进制格式输出传感器值到串口
+  delay(100);                 // 延时100毫秒
 }
+```
 
 测试结果
 
@@ -1222,6 +1168,7 @@ USB线*1
 
 测试代码
 
+```
 //设置控制各段的数字IO 脚
 
 int a=7;//定义数字接口7 连接a 段数码管
@@ -1244,17 +1191,17 @@ void digital_1(void) //显示数字1
 
 {
 
-unsigned char j;
+      unsigned char j;
 
-digitalWrite(c,HIGH);//给数字接口5 引脚高电平，点亮c 段
+      digitalWrite(c,HIGH);//给数字接口5 引脚高电平，点亮c 段
 
-digitalWrite(b,HIGH);//点亮b 段
+      digitalWrite(b,HIGH);//点亮b 段
 
-for(j=7;j\<=11;j++)//熄灭其余段
+      for(j=7;j<=11;j++)//熄灭其余段
 
-digitalWrite(j,LOW);
+      	 digitalWrite(j,LOW);
 
-digitalWrite(dp,LOW);//熄灭小数点DP 段
+      digitalWrite(dp,LOW);//熄灭小数点DP 段
 
 }
 
@@ -1262,21 +1209,21 @@ void digital_2(void) //显示数字2
 
 {
 
-unsigned char j;
+    unsigned char j;
 
-digitalWrite(b,HIGH);
+    digitalWrite(b,HIGH);
 
-digitalWrite(a,HIGH);
+    digitalWrite(a,HIGH);
 
-for(j=9;j\<=11;j++)
+    for(j=9;j<=11;j++)
 
-digitalWrite(j,HIGH);
+    	digitalWrite(j,HIGH);
 
-digitalWrite(dp,LOW);
+    digitalWrite(dp,LOW);
 
-digitalWrite(c,LOW);
+    digitalWrite(c,LOW);
 
-digitalWrite(f,LOW);
+    digitalWrite(f,LOW);
 
 }
 
@@ -1284,21 +1231,21 @@ void digital_3(void) //显示数字3
 
 {
 
-unsigned char j;
+    unsigned char j;
 
-digitalWrite(g,HIGH);
+    digitalWrite(g,HIGH);
 
-digitalWrite(d,HIGH);
+    digitalWrite(d,HIGH);
 
-for(j=5;j\<=7;j++)
+    for(j=5;j<=7;j++)
 
-digitalWrite(j,HIGH);
+    	digitalWrite(j,HIGH);
 
-digitalWrite(dp,LOW);
+    digitalWrite(dp,LOW);
 
-digitalWrite(f,LOW);
+    digitalWrite(f,LOW);
 
-digitalWrite(e,LOW);
+    digitalWrite(e,LOW);
 
 }
 
@@ -1306,21 +1253,21 @@ void digital_4(void) //显示数字4
 
 {
 
-digitalWrite(c,HIGH);
+    digitalWrite(c,HIGH);
 
-digitalWrite(b,HIGH);
+    digitalWrite(b,HIGH);
 
-digitalWrite(f,HIGH);
+    digitalWrite(f,HIGH);
 
-digitalWrite(g,HIGH);
+    digitalWrite(g,HIGH);
 
-digitalWrite(dp,LOW);
+    digitalWrite(dp,LOW);
 
-digitalWrite(a,LOW);
+    digitalWrite(a,LOW);
 
-digitalWrite(e,LOW);
+    digitalWrite(e,LOW);
 
-digitalWrite(d,LOW);
+    digitalWrite(d,LOW);
 
 }
 
@@ -1328,21 +1275,21 @@ void digital_5(void) //显示数字5
 
 {
 
-unsigned char j;
+    unsigned char j;
 
-for(j=7;j\<=9;j++)
+    for(j=7;j<=9;j++)
 
-digitalWrite(j,HIGH);
+    	digitalWrite(j,HIGH);
 
-digitalWrite(c,HIGH);
+    digitalWrite(c,HIGH);
 
-digitalWrite(d,HIGH);
+    digitalWrite(d,HIGH);
 
-digitalWrite(dp,LOW);
+    digitalWrite(dp,LOW);
 
-digitalWrite(b,LOW);
+    digitalWrite(b,LOW);
 
-digitalWrite(e,LOW);
+    digitalWrite(e,LOW);
 
 }
 
@@ -1350,17 +1297,17 @@ void digital_6(void) //显示数字6
 
 {
 
-unsigned char j;
+    unsigned char j;
 
-for(j=7;j\<=11;j++)
+    for(j=7;j<=11;j++)
 
-digitalWrite(j,HIGH);
+    	digitalWrite(j,HIGH);
 
-digitalWrite(c,HIGH);
+    digitalWrite(c,HIGH);
 
-digitalWrite(dp,LOW);
+    digitalWrite(dp,LOW);
 
-digitalWrite(b,LOW);
+    digitalWrite(b,LOW);
 
 }
 
@@ -1368,17 +1315,17 @@ void digital_7(void) //显示数字7
 
 {
 
-unsigned char j;
+    unsigned char j;
 
-for(j=5;j\<=7;j++)
+    for(j=5;j<=7;j++)
 
-digitalWrite(j,HIGH);
+    	digitalWrite(j,HIGH);
 
-digitalWrite(dp,LOW);
+    digitalWrite(dp,LOW);
 
-for(j=8;j\<=11;j++)
+    for(j=8;j<=11;j++)
 
-digitalWrite(j,LOW);
+    	digitalWrite(j,LOW);
 
 }
 
@@ -1386,13 +1333,13 @@ void digital_8(void) //显示数字8
 
 {
 
-unsigned char j;
+    unsigned char j;
 
-for(j=5;j\<=11;j++)
+    for(j=5;j<=11;j++)
 
-digitalWrite(j,HIGH);
+    	digitalWrite(j,HIGH);
 
-digitalWrite(dp,LOW);
+    digitalWrite(dp,LOW);
 
 }
 
@@ -1400,57 +1347,58 @@ void setup()
 
 {
 
-int i;//定义变量
+    int i;//定义变量
 
-for(i=4;i\<=11;i++)
+    for(i=4;i<=11;i++)
 
-pinMode(i,OUTPUT);//设置4～11 引脚为输出模式
-
+    	pinMode(i,OUTPUT);//设置4～11 引脚为输出模
+    
 }
 
 void loop()
 
 {
 
-while(1)
+    while(1)
 
-{
+    {
 
-digital_1();//显示数字1
+        digital_1();//显示数字1
 
-delay(2000);//延时2s
+        delay(2000);//延时2s
 
-digital_2();//显示数字2
+        digital_2();//显示数字2
 
-delay(1000); //延时1s
+        delay(1000); //延时1s
 
-digital_3();//显示数字3
+        digital_3();//显示数字3
 
-delay(1000); //延时1s
+        delay(1000); //延时1s
 
-digital_4();//显示数字4
+        digital_4();//显示数字4
 
-delay(1000); //延时1s
+        delay(1000); //延时1s
 
-digital_5();//显示数字5
+        digital_5();//显示数字5
 
-delay(1000); //延时1s
+        delay(1000); //延时1s
 
-digital_6();//显示数字6
+        digital_6();//显示数字6
 
-delay(1000); //延时1s
+        delay(1000); //延时1s
 
-digital_7();//显示数字7
+        digital_7();//显示数字7
 
-delay(1000); //延时1s
+        delay(1000); //延时1s
 
-digital_8();//显示数字8
+        digital_8();//显示数字8
 
-delay(1000); //延时1s
+        delay(1000); //延时1s
+
+    }
 
 }
-
-}
+```
 
 测试结果
 
@@ -1494,87 +1442,90 @@ USB线*1
 
 测试代码
 
-//定义了一个数组，用来存放“0”字的字模
-
-unsigned char Text\[\]={0x00,0x1c,0x22,0x22,0x22,0x22,0x22,0x1c};
-
-void Draw_point(unsigned char x,unsigned char y)//画点函数
-
-{
-
-clear\_();
-
-digitalWrite(x+2, HIGH);
-
-digitalWrite(y+10, LOW);
-
-delay(1);
-
-}
-
-void show_num(void)//显示函数，最终还是调用了画点函数。
-
-{
-
-unsigned char i,j,data;
-
-for(i=0;i\<8;i++)
-
-{
-
-data=Text\[i\];
-
-for(j=0;j\<8;j++)
-
-{
-
-if(data & 0x01)Draw_point(j,i);
-
-data\>\>=1;
-
-}
-
-}
-
-}
-
-void setup(){
-
-int i = 0 ;
-
-for(i=2;i\<18;i++)
-
-{
-
-pinMode(i, OUTPUT);
-
-}
-
-clear\_();
-
-}
-
-void loop()
-
-{
-
-show_num();
-
-}
-
-void clear\_(void)//清除屏幕
-
-{
-
-for(int i=2;i\<10;i++)
-
-digitalWrite(i, LOW);
-
-for(int i=0;i\<8;i++)
-
-digitalWrite(i+10, HIGH);
-
-}
+ ```
+ //定义了一个数组，用来存放“0”字的字模
+ 
+ unsigned char Text[]={0x00,0x1c,0x22,0x22,0x22,0x22,0x22,0x1c};
+ 
+ void Draw_point(unsigned char x,unsigned char y)//画点函数
+ 
+ {
+ 
+     clear_();
+ 
+     digitalWrite(x+2, HIGH);
+ 
+     digitalWrite(y+10, LOW);
+ 
+     delay(1);
+ 
+ }
+ 
+ void show_num(void)//显示函数，最终还是调用了画点函数。
+ 
+ {
+ 
+     unsigned char i,j,data;
+ 
+     for(i=0;i<8;i++)
+ 
+     {
+ 
+     	data=Text[i];
+ 
+         for(j=0;j<8;j++)
+ 
+         {
+ 
+             if(data & 0x01)Draw_point(j,i);
+ 
+                 data>>=1;
+ 
+         }
+ 
+ 	}
+ 
+ }
+ 
+ void setup()
+ {
+ 
+ 	int i = 0 ;
+ 
+     for(i=2;i<18;i++)
+ 
+     {
+ 
+     	pinMode(i, OUTPUT);
+ 
+     }
+ 
+     clear_();
+ 
+ }
+ 
+ void loop()
+ 
+ {
+ 
+ 	show_num();
+ 
+ }
+ 
+ void clear_(void)//清除屏幕
+ 
+ {
+ 
+     for(int i=2;i<10;i++)
+ 
+     	digitalWrite(i, LOW);
+ 
+     for(int i=0;i<8;i++)
+ 
+     digitalWrite(i+10, HIGH);
+ 
+ }
+ ```
 
 测试结果
 
@@ -1614,539 +1565,283 @@ USB线*1
 
 测试代码
 
-int a = 1;
+```
+int a = 1;                      // 数码管段a控制引脚
+int b = 2;                      // 数码管段b控制引脚
+int c = 3;                      // 数码管段c控制引脚
+int d = 4;                      // 数码管段d控制引脚
+int e = 5;                      // 数码管段e控制引脚
+int f = 6;                      // 数码管段f控制引脚
+int g = 7;                      // 数码管段g控制引脚
+int dp = 8;                     // 数码管小数点控制引脚
 
-int b = 2;
+int d4 = 9;                     // 数码管位选4控制引脚
+int d3 = 10;                    // 数码管位选3控制引脚
+int d2 = 11;                    // 数码管位选2控制引脚
+int d1 = 12;                    // 数码管位选1控制引脚
 
-int c = 3;
-
-int d = 4;
-
-int e = 5;
-
-int f = 6;
-
-int g = 7;
-
-int dp = 8;
-
-int d4 = 9;
-
-int d3 = 10;
-
-int d2 = 11;
-
-int d1 = 12;
-
-// set variable
-
-long n = 1230;
-
-int x = 100;
-
-int del = 55; // fine adjustment for clock
+// 设置变量
+long n = 1230;                  // 显示数值变量
+int x = 100;                    // 临时变量
+int del = 55;                   // 时钟微调参数
 
 void setup()
-
 {
-
-pinMode(d1, OUTPUT);
-
-pinMode(d2, OUTPUT);
-
-pinMode(d3, OUTPUT);
-
-pinMode(d4, OUTPUT);
-
-pinMode(a, OUTPUT);
-
-pinMode(b, OUTPUT);
-
-pinMode(c, OUTPUT);
-
-pinMode(d, OUTPUT);
-
-pinMode(e, OUTPUT);
-
-pinMode(f, OUTPUT);
-
-pinMode(g, OUTPUT);
-
-pinMode(dp, OUTPUT);
-
+  // 初始化所有引脚为输出模式
+  pinMode(d1, OUTPUT);
+  pinMode(d2, OUTPUT);
+  pinMode(d3, OUTPUT);
+  pinMode(d4, OUTPUT);
+  pinMode(a, OUTPUT);
+  pinMode(b, OUTPUT);
+  pinMode(c, OUTPUT);
+  pinMode(d, OUTPUT);
+  pinMode(e, OUTPUT);
+  pinMode(f, OUTPUT);
+  pinMode(g, OUTPUT);
+  pinMode(dp, OUTPUT);
 }
-
-/////////////////////////////////////////////////////////////
 
 void loop()
-
 {
-
-int a=0;
-
-int b=0;
-
-int c=0;
-
-int d=0;
-
-unsigned long currentMillis = millis();
-
-while(d\>=0)
-
-{
-
-while(millis()-currentMillis\<1000)
-
-{
-
-Display(1,a);
-
-Display(2,b);
-
-Display(3,c);
-
-Display(4,d);
-
+  int a=0;                      // 千位数字
+  int b=0;                      // 百位数字
+  int c=0;                      // 十位数字
+  int d=0;                      // 个位数字
+  unsigned long currentMillis = millis();  // 获取当前时间
+  
+  while(d>=0)                   // 主循环
+  {
+    while(millis()-currentMillis<1000)  // 每秒更新一次
+    {
+      Display(1,a);             // 显示千位
+      Display(2,b);             // 显示百位
+      Display(3,c);             // 显示十位
+      Display(4,d);             // 显示个位
+    }
+    currentMillis = millis();   // 重置计时
+    
+    d++;                        // 个位加1
+    if (d>9)                    // 个位进位
+    {
+      c++;
+      d=0;
+    }
+    if (c>9)                    // 十位进位
+    {
+      b++;
+      c=0;
+    }
+    if (b>9)                    // 百位进位
+    {
+      a++;
+      b=0;
+    }
+    if (a>9)                    // 千位归零
+    {
+      a=0;
+      b=0;
+      c=0;
+      d=0;
+    }
+  }
 }
 
-currentMillis = millis();
-
-d++;
-
-if (d\>9)
-
+void WeiXuan(unsigned char n)    // 位选函数
 {
-
-c++;
-
-d=0;
-
+  switch (n)
+  {
+    case 1:                     // 选中第1位数码管
+      digitalWrite(d1, LOW);
+      digitalWrite(d2, HIGH);
+      digitalWrite(d3, HIGH);
+      digitalWrite(d4, HIGH);
+      break;
+    case 2:                     // 选中第2位数码管
+      digitalWrite(d1, HIGH);
+      digitalWrite(d2, LOW);
+      digitalWrite(d3, HIGH);
+      digitalWrite(d4, HIGH);
+      break;
+    case 3:                     // 选中第3位数码管
+      digitalWrite(d1, HIGH);
+      digitalWrite(d2, HIGH);
+      digitalWrite(d3, LOW);
+      digitalWrite(d4, HIGH);
+      break;
+    case 4:                     // 选中第4位数码管
+      digitalWrite(d1, HIGH);
+      digitalWrite(d2, HIGH);
+      digitalWrite(d3, HIGH);
+      digitalWrite(d4, LOW);
+      break;
+    default:                    // 默认关闭所有位选
+      digitalWrite(d1, HIGH);
+      digitalWrite(d2, HIGH);
+      digitalWrite(d3, HIGH);
+      digitalWrite(d4, HIGH);
+      break;
+  }
 }
 
-if (c\>9)
-
+// 以下为数字显示函数（0-9）
+void Num_0() 
 {
-
-b++;
-
-c=0;
-
-}
-
-if (b\>9)
-
-{
-
-a++;
-
-b=0;
-
-}
-
-if (a\>9)
-
-{
-
-a=0;
-
-b=0;
-
-c=0;
-
-d=0;
-
-}
-
-}
-
-}
-
-///////////////////////////////////////////////////////////////
-
-void WeiXuan(unsigned char n)//
-
-{
-
-switch (n)
-
-{
-
-case 1:
-
-digitalWrite(d1, LOW);
-
-digitalWrite(d2, HIGH);
-
-digitalWrite(d3, HIGH);
-
-digitalWrite(d4, HIGH);
-
-break;
-
-case 2:
-
-digitalWrite(d1, HIGH);
-
-digitalWrite(d2, LOW);
-
-digitalWrite(d3, HIGH);
-
-digitalWrite(d4, HIGH);
-
-break;
-
-case 3:
-
-digitalWrite(d1, HIGH);
-
-digitalWrite(d2, HIGH);
-
-digitalWrite(d3, LOW);
-
-digitalWrite(d4, HIGH);
-
-break;
-
-case 4:
-
-digitalWrite(d1, HIGH);
-
-digitalWrite(d2, HIGH);
-
-digitalWrite(d3, HIGH);
-
-digitalWrite(d4, LOW);
-
-break;
-
-default :
-
-digitalWrite(d1, HIGH);
-
-digitalWrite(d2, HIGH);
-
-digitalWrite(d3, HIGH);
-
-digitalWrite(d4, HIGH);
-
-break;
-
-}
-
-}
-
-void Num_0()
-
-{
-
-digitalWrite(a, HIGH);
-
-digitalWrite(b, HIGH);
-
-digitalWrite(c, HIGH);
-
-digitalWrite(d, HIGH);
-
-digitalWrite(e, HIGH);
-
-digitalWrite(f, HIGH);
-
-digitalWrite(g, LOW);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, HIGH); 
+  digitalWrite(b, HIGH); 
+  digitalWrite(c, HIGH);
+  digitalWrite(d, HIGH); 
+  digitalWrite(e, HIGH); 
+  digitalWrite(f, HIGH);
+  digitalWrite(g, LOW);  
+  digitalWrite(dp, LOW); 
 }
 
 void Num_1()
-
 {
-
-digitalWrite(a, LOW);
-
-digitalWrite(b, HIGH);
-
-digitalWrite(c, HIGH);
-
-digitalWrite(d, LOW);
-
-digitalWrite(e, LOW);
-
-digitalWrite(f, LOW);
-
-digitalWrite(g, LOW);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, LOW);  
+  digitalWrite(b, HIGH); 
+  digitalWrite(c, HIGH);
+  digitalWrite(d, LOW);  
+  digitalWrite(e, LOW);  
+  digitalWrite(f, LOW);
+  digitalWrite(g, LOW);  
+  digitalWrite(dp, LOW); 
 }
 
-void Num_2()
-
+void Num_2() 
 {
-
-digitalWrite(a, HIGH);
-
-digitalWrite(b, HIGH);
-
-digitalWrite(c, LOW);
-
-digitalWrite(d, HIGH);
-
-digitalWrite(e, HIGH);
-
-digitalWrite(f, LOW);
-
-digitalWrite(g, HIGH);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, HIGH); 
+  digitalWrite(b, HIGH); 
+  digitalWrite(c, LOW);
+  digitalWrite(d, HIGH); 
+  digitalWrite(e, HIGH); 
+  digitalWrite(f, LOW);
+  digitalWrite(g, HIGH); 
+  digitalWrite(dp, LOW); 
 }
 
-void Num_3()
-
+void Num_3() 
 {
-
-digitalWrite(a, HIGH);
-
-digitalWrite(b, HIGH);
-
-digitalWrite(c, HIGH);
-
-digitalWrite(d, HIGH);
-
-digitalWrite(e, LOW);
-
-digitalWrite(f, LOW);
-
-digitalWrite(g, HIGH);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, HIGH); 
+  digitalWrite(b, HIGH); 
+  digitalWrite(c, HIGH);
+  digitalWrite(d, HIGH); 
+  digitalWrite(e, LOW);  
+  digitalWrite(f, LOW);
+  digitalWrite(g, HIGH); 
+  digitalWrite(dp, LOW); 
 }
 
-void Num_4()
-
+void Num_4() 
 {
-
-digitalWrite(a, LOW);
-
-digitalWrite(b, HIGH);
-
-digitalWrite(c, HIGH);
-
-digitalWrite(d, LOW);
-
-digitalWrite(e, LOW);
-
-digitalWrite(f, HIGH);
-
-digitalWrite(g, HIGH);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, LOW);  
+  digitalWrite(b, HIGH); 
+  digitalWrite(c, HIGH);
+  digitalWrite(d, LOW);  
+  digitalWrite(e, LOW);  
+  digitalWrite(f, HIGH);
+  digitalWrite(g, HIGH); 
+  digitalWrite(dp, LOW); 
 }
 
 void Num_5()
-
 {
-
-digitalWrite(a, HIGH);
-
-digitalWrite(b, LOW);
-
-digitalWrite(c, HIGH);
-
-digitalWrite(d, HIGH);
-
-digitalWrite(e, LOW);
-
-digitalWrite(f, HIGH);
-
-digitalWrite(g, HIGH);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, HIGH); 
+  digitalWrite(b, LOW);  
+  digitalWrite(c, HIGH);
+  digitalWrite(d, HIGH); 
+  digitalWrite(e, LOW);  
+  digitalWrite(f, HIGH);
+  digitalWrite(g, HIGH); 
+  digitalWrite(dp, LOW); 
 }
 
-void Num_6()
-
+void Num_6() 
 {
-
-digitalWrite(a, HIGH);
-
-digitalWrite(b, LOW);
-
-digitalWrite(c, HIGH);
-
-digitalWrite(d, HIGH);
-
-digitalWrite(e, HIGH);
-
-digitalWrite(f, HIGH);
-
-digitalWrite(g, HIGH);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, HIGH); 
+  digitalWrite(b, LOW);  
+  digitalWrite(c, HIGH);
+  digitalWrite(d, HIGH); 
+  digitalWrite(e, HIGH); 
+  digitalWrite(f, HIGH);
+  digitalWrite(g, HIGH); 
+  digitalWrite(dp, LOW); 
 }
 
 void Num_7()
-
 {
-
-digitalWrite(a, HIGH);
-
-digitalWrite(b, HIGH);
-
-digitalWrite(c, HIGH);
-
-digitalWrite(d, LOW);
-
-digitalWrite(e, LOW);
-
-digitalWrite(f, LOW);
-
-digitalWrite(g, LOW);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, HIGH); 
+  digitalWrite(b, HIGH); 
+  digitalWrite(c, HIGH);
+  digitalWrite(d, LOW);  
+  digitalWrite(e, LOW);  
+  digitalWrite(f, LOW);
+  digitalWrite(g, LOW);  
+  digitalWrite(dp, LOW); 
 }
 
-void Num_8()
-
+void Num_8() 
 {
-
-digitalWrite(a, HIGH);
-
-digitalWrite(b, HIGH);
-
-digitalWrite(c, HIGH);
-
-digitalWrite(d, HIGH);
-
-digitalWrite(e, HIGH);
-
-digitalWrite(f, HIGH);
-
-digitalWrite(g, HIGH);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, HIGH); 
+  digitalWrite(b, HIGH); 
+  digitalWrite(c, HIGH);
+  digitalWrite(d, HIGH); 
+  digitalWrite(e, HIGH); 
+  digitalWrite(f, HIGH);
+  digitalWrite(g, HIGH); 
+  digitalWrite(dp, LOW); 
 }
 
-void Num_9()
-
+void Num_9() 
 {
-
-digitalWrite(a, HIGH);
-
-digitalWrite(b, HIGH);
-
-digitalWrite(c, HIGH);
-
-digitalWrite(d, HIGH);
-
-digitalWrite(e, LOW);
-
-digitalWrite(f, HIGH);
-
-digitalWrite(g, HIGH);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, HIGH); 
+  digitalWrite(b, HIGH); 
+  digitalWrite(c, HIGH);
+  digitalWrite(d, HIGH); 
+  digitalWrite(e, LOW);  
+  digitalWrite(f, HIGH);
+  digitalWrite(g, HIGH); 
+  digitalWrite(dp, LOW); 
 }
 
-void Clear() // clear the screen
-
+void Clear()                   // 清空数码管显示
 {
-
-digitalWrite(a, LOW);
-
-digitalWrite(b, LOW);
-
-digitalWrite(c, LOW);
-
-digitalWrite(d, LOW);
-
-digitalWrite(e, LOW);
-
-digitalWrite(f, LOW);
-
-digitalWrite(g, LOW);
-
-digitalWrite(dp, LOW);
-
+  digitalWrite(a, LOW); 
+  digitalWrite(b, LOW); 
+  digitalWrite(c, LOW);
+  digitalWrite(d, LOW); 
+  digitalWrite(e, LOW); 
+  digitalWrite(f, LOW);
+  digitalWrite(g, LOW); 
+  digitalWrite(dp, LOW);
 }
 
-void pickNumber(unsigned char n)// select number
-
+void pickNumber(unsigned char n)  // 数字选择函数
 {
-
-switch (n)
-
-{
-
-case 0: Num_0();
-
-break;
-
-case 1: Num_1();
-
-break;
-
-case 2: Num_2();
-
-break;
-
-case 3: Num_3();
-
-break;
-
-case 4: Num_4();
-
-break;
-
-case 5: Num_5();
-
-break;
-
-case 6: Num_6();
-
-break;
-
-case 7: Num_7();
-
-break;
-
-case 8: Num_8();
-
-break;
-
-case 9: Num_9();
-
-break;
-
-default: Clear();
-
-break;
-
+  switch (n) {
+    case 0: Num_0(); break;    // 显示数字0
+    case 1: Num_1(); break;    // 显示数字1
+    case 2: Num_2(); break;    // 显示数字2
+    case 3: Num_3(); break;    // 显示数字3
+    case 4: Num_4(); break;    // 显示数字4
+    case 5: Num_5(); break;    // 显示数字5
+    case 6: Num_6(); break;    // 显示数字6
+    case 7: Num_7(); break;    // 显示数字7
+    case 8: Num_8(); break;    // 显示数字8
+    case 9: Num_9(); break;    // 显示数字9
+    default: Clear(); break;   // 默认清空显示
+  }
 }
 
-}
-
-void Display(unsigned char x, unsigned char Number)// take x as coordinate and display number
-
+void Display(unsigned char x, unsigned char Number)  // 数码管显示函数
 {
-
-WeiXuan(x);
-
-pickNumber(Number);
-
-delay(1);
-
-Clear() ; // clear the screen
-
+  WeiXuan(x);                 // 选择显示位
+  pickNumber(Number);         // 显示对应数字
+  delay(1);                   // 短暂延时
+  Clear();                    // 清空显示（消隐）
 }
+```
 
 测试结果
 
@@ -2164,8 +1859,6 @@ Clear() ; // clear the screen
 
 线，橙色为信号线。
 
-![](media/4b15604cd8a82aeb39497c7544b39f93.emf)
-
 舵机的转动的角度是通过调节PWM（脉冲宽度调制）信号的占空比来实现的，标准PWM
 
 （脉冲宽度调制）信号的周期固定为20ms（50Hz），理论上脉宽分布应在1ms到2ms
@@ -2176,9 +1869,7 @@ Clear() ; // clear the screen
 
 转的角度也会有所不同。
 
-![](media/c29c393165eaf0cba523e46d53d1b958.emf)
-
-实验器材
+实验器材
 
 开发板*1
 
@@ -2196,6 +1887,7 @@ USB线*1
 
 程序A：
 
+```
 int servopin=9;//定义数字接口9 连接伺服舵机信号线
 
 int myangle;//定义角度变量
@@ -2208,15 +1900,15 @@ void servopulse(int servopin,int myangle)//定义一个脉冲函数
 
 {
 
-pulsewidth=(myangle*11)+500;//将角度转化为500-2480 的脉宽值
+    pulsewidth=(myangle*11)+500;//将角度转化为500-2480 的脉宽值
 
-digitalWrite(servopin,HIGH);//将舵机接口电平至高
+    digitalWrite(servopin,HIGH);//将舵机接口电平至高
 
-delayMicroseconds(pulsewidth);//延时脉宽值的微秒数
+    delayMicroseconds(pulsewidth);//延时脉宽值的微秒数
 
-digitalWrite(servopin,LOW);//将舵机接口电平至低
+    digitalWrite(servopin,LOW);//将舵机接口电平至低
 
-delay(20-pulsewidth/1000);
+    delay(20-pulsewidth/1000);
 
 }
 
@@ -2224,11 +1916,11 @@ void setup()
 
 {
 
-pinMode(servopin,OUTPUT);//设定舵机接口为输出接口
+    pinMode(servopin,OUTPUT);//设定舵机接口为输出接口
 
-Serial.begin(9600);//连接到串行端口，波特率为9600
+    Serial.begin(9600);//连接到串行端口，波特率为9600
 
-Serial.println("servo=o_seral_simple ready" ) ;
+    Serial.println("servo=o_seral_simple ready" ) ;
 
 }
 
@@ -2236,37 +1928,39 @@ void loop()//将0 到9 的数转化为0 到180 角度，并让LED 闪烁相应�
 
 {
 
-val=Serial.read();//读取串行端口的值
+    val=Serial.read();//读取串行端口的值
 
-if(val\>='0'&&val\<='9')
+    if(val>='0'&&val<='9')
 
-{
+    {
 
-val=val-'0';//将特征量转化为数值变量
+        val=val-'0';//将特征量转化为数值变量
 
-val=val\*(180/9);//将数字转化为角度
+        val=val*(180/9);//将数字转化为角度
 
-Serial.print("moving servo to ");
+        Serial.print("moving servo to ");
 
-Serial.print(val,DEC);
+        Serial.print(val,DEC);
 
-Serial.println();
+        Serial.println();
 
-for(int i=0;i\<=50;i++) //给予舵机足够的时间让它转到指定角度
+        for(int i=0;i\<=50;i++) //给予舵机足够的时间让它转到指定角度
 
-{
+        {
 
-servopulse(servopin,val);//引用脉冲函数
+            servopulse(servopin,val);//引用脉冲函数
+
+        }
+
+    }
 
 }
-
-}
-
-}
+```
 
 程序B：
 
-\#include \<Servo.h\>
+```
+#include <Servo.h>
 
 Servo myservo;//定义舵机变量名
 
@@ -2274,7 +1968,7 @@ void setup()
 
 {
 
-myservo.attach(9);//定义舵机接口（9、10 都可以，缺点只能控制2 个）
+	myservo.attach(9);//定义舵机接口（9、10 都可以，缺点只能控制2 个）
 
 }
 
@@ -2282,25 +1976,18 @@ void loop()
 
 {
 
-myservo.write(90);//设置舵机旋转的角度
+	myservo.write(90);//设置舵机旋转的角度
 
 }
+```
 
-注意：在上传程序前，要把Servo文件夹放到 编译器安装目录下的
-
-\Arduino\libraries里。不然编译不过。
-
-例如我的：C:\Program Files\Arduino\libraries
+注意：在上传程序前，要把Servo文件夹放到 编译器安装目录下的\Arduino\libraries里。不然编译不过。例如我的：C:\Program Files\Arduino\libraries
 
 测试结果
 
-程序A 结果：
+程序A 结果：在串口监视器中输入数字点击发送，舵机转动到所对应的角度数的位置，并将角度打印显示到屏幕上。
 
-在串口监视器中输入数字点击发送，舵机转动到所对应的角度数的位置，并将角度打印显示到屏幕上。
-
-程序B结果：
-
-舵机自己转动到90度位置。
+程序B结果：舵机自己转动到90度位置。
 
 ## 实验十八 震动传感器实验
 
@@ -2333,6 +2020,7 @@ SW-200D 振动开关*1
 
 测试代码
 
+```
 int ledPin = 11; //定义数字口11
 
 int inputPin = 3; //定义数字口3
@@ -2341,40 +2029,39 @@ void setup()
 
 {
 
-pinMode(ledPin, OUTPUT); //将ledPin设置为输出
+    pinMode(ledPin, OUTPUT); //将ledPin设置为输出
 
-pinMode(inputPin, INPUT); //将inputPin设置为输入
+    pinMode(inputPin, INPUT); //将inputPin设置为输入
 
 }
 
 void loop()
-
+	
 {
 
-int val = digitalRead(inputPin);
+    int val = digitalRead(inputPin);
 
-//设置数字变量val，读取到数字口3的数值，并赋值给 val
+    //设置数字变量val，读取到数字口3的数值，并赋值给 val
 
-if (val == LOW) //当val为低电平时，LED变暗
+    if (val == LOW) //当val为低电平时，LED变暗
 
-{
+    {
 
-digitalWrite(ledPin, LOW); // LED变暗
+    	digitalWrite(ledPin, LOW); // LED变暗
+
+    }
+
+    else
+
+    {
+
+    	digitalWrite(ledPin, HIGH); // LED亮起
+
+    }
 
 }
-
-else
-
-{
-
-digitalWrite(ledPin, HIGH); // LED亮起
-
-}
-
-}
+```
 
 测试结果
 
 下载完程序，上电后，当检测到震动时，外接LED灯无规则的亮灭。
-
-
